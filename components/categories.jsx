@@ -3,7 +3,7 @@ import React from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
-const Categories = ({ activeCategory, setActiveCategory, categories }) => {
+const Categories = ({ activeCategory, handleChangeCategory, categories }) => {
   return (
     <Animated.View
       entering={FadeInDown.duration(500).springify()}
@@ -21,7 +21,7 @@ const Categories = ({ activeCategory, setActiveCategory, categories }) => {
           return (
             <TouchableOpacity
               key={cat.idCategory}
-              onPress={() => setActiveCategory(cat.strCategory)}
+              onPress={() => handleChangeCategory(cat.strCategory)}
               className="flex items-center space-y-1"
               style={{ marginRight: 16 }}
             >
