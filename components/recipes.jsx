@@ -7,6 +7,7 @@ import {
 import MasonryList from "@react-native-seoul/masonry-list";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import Loading from "./loading";
+import { CachedImage } from "../helpers/image";
 
 const Recipes = ({ meals, categories }) => {
   return (
@@ -55,8 +56,17 @@ const RecipeCard = ({ item, index }) => {
           paddingRight: isEven ? 8 : 0,
         }}
       >
-        <Image
+        {/* <Image
           source={{ uri: item.strMealThumb }}
+          style={{
+            width: "100%",
+            height: index % 3 == 0 ? hp(25) : hp(35),
+            borderRadius: 35,
+            backgroundColor: "rgba(0, 0, 0, 0.1)",
+          }}
+        /> */}
+        <CachedImage
+          uri={item.strMealThumb}
           style={{
             width: "100%",
             height: index % 3 == 0 ? hp(25) : hp(35),

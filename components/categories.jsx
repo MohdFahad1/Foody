@@ -2,6 +2,7 @@ import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { CachedImage } from "../helpers/image";
 
 const Categories = ({ activeCategory, handleChangeCategory, categories }) => {
   return (
@@ -26,8 +27,13 @@ const Categories = ({ activeCategory, handleChangeCategory, categories }) => {
               style={{ marginRight: 16 }}
             >
               <View className="rounded-full p-[6px]" style={activeButtonStyle}>
-                <Image
+                {/* <Image
                   source={{ uri: cat.strCategoryThumb }}
+                  style={{ width: hp(6), height: hp(6) }}
+                  className="rounded-full"
+                /> */}
+                <CachedImage
+                  uri={cat.strCategoryThumb}
                   style={{ width: hp(6), height: hp(6) }}
                   className="rounded-full"
                 />
