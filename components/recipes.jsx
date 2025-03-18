@@ -64,6 +64,7 @@ const RecipeCard = ({ item, index, router }) => {
       >
         <Image
           source={{ uri: item.strMealThumb }}
+          sharedTransitionTag={`meal-${item.idMeal}`}
           style={{
             width: "100%",
             height: index % 3 == 0 ? hp(25) : hp(35),
@@ -79,6 +80,7 @@ const RecipeCard = ({ item, index, router }) => {
             borderRadius: 35,
             backgroundColor: "rgba(0, 0, 0, 0.1)",
           }}
+          sharedTransition={item.strMeal}
         /> */}
         <Text
           className="font-semibold text-neutral-600"
