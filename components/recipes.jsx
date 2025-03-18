@@ -7,9 +7,12 @@ import {
 import MasonryList from "@react-native-seoul/masonry-list";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import Loading from "./loading";
-import { CachedImage } from "../helpers/image";
+import { useRouter } from "expo-router";
+// import { CachedImage } from "../helpers/image";
 
 const Recipes = ({ meals, categories }) => {
+  const router = useRouter();
+
   return (
     <View className="mx-4" style={{ marginTop: 12 }}>
       <Text
@@ -27,7 +30,9 @@ const Recipes = ({ meals, categories }) => {
             keyExtractor={(item) => item.idMeal.toString()}
             numColumns={2}
             showsVerticalScrollIndicator={false}
-            renderItem={({ item, i }) => <RecipeCard item={item} index={i} />}
+            renderItem={({ item, i }) => (
+              <RecipeCard item={item} index={i} router={router} />
+            )}
             onEndReachedThreshold={0.1}
           />
         )}
@@ -38,7 +43,7 @@ const Recipes = ({ meals, categories }) => {
 
 export default Recipes;
 
-const RecipeCard = ({ item, index }) => {
+const RecipeCard = ({ item, index, router }) => {
   let isEven = index % 2 == 0;
   return (
     <Animated.View
@@ -55,8 +60,9 @@ const RecipeCard = ({ item, index }) => {
           paddingLeft: isEven ? 0 : 8,
           paddingRight: isEven ? 8 : 0,
         }}
+        onPress={() => router.push(`/recipeDetail/${item.idMeal}`)}
       >
-        {/* <Image
+        <Image
           source={{ uri: item.strMealThumb }}
           style={{
             width: "100%",
@@ -64,8 +70,8 @@ const RecipeCard = ({ item, index }) => {
             borderRadius: 35,
             backgroundColor: "rgba(0, 0, 0, 0.1)",
           }}
-        /> */}
-        <CachedImage
+        />
+        {/* <CachedImage
           uri={item.strMealThumb}
           style={{
             width: "100%",
@@ -73,7 +79,7 @@ const RecipeCard = ({ item, index }) => {
             borderRadius: 35,
             backgroundColor: "rgba(0, 0, 0, 0.1)",
           }}
-        />
+        /> */}
         <Text
           className="font-semibold text-neutral-600"
           style={{ marginLeft: 2, fontSize: hp(1.5) }}
