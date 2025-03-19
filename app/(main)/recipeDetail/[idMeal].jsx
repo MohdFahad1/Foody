@@ -58,6 +58,8 @@ const RecipeDetail = () => {
     return indexes;
   };
 
+  console.log("INGREDIENT INDEXES: ", ingredientsIndexes(mealData));
+
   const getYoutubeVideoId = (url) => {
     const regex = /[?&]v=([^&]+)/;
     const match = url.match(regex);
@@ -269,46 +271,42 @@ const RecipeDetail = () => {
               Ingredients
             </Text>
 
-            {!mealData ? (
-              <Text>Loading...</Text>
-            ) : (
-              <View className="ml-3">
-                {ingredientsIndexes(mealData).map((i) => {
-                  const measure = mealData["strMeasure" + i];
-                  const ingredient = mealData["strIngredient" + i];
+            <View className="ml-3">
+              {ingredientsIndexes(mealData).map((i) => {
+                const measure = mealData[`strMeasure${i}`];
+                const ingredient = mealData[`strIngredient${i}`];
 
-                  return (
-                    (measure || ingredient) && (
-                      <View key={i} className="flex-row items-center mt-4">
-                        <View
-                          style={{ height: hp(1.5), width: hp(1.5) }}
-                          className="rounded-full bg-amber-300"
-                        >
-                          <View className="flex-row mx-2">
-                            {measure && (
-                              <Text
-                                style={{ fontSize: hp(1.7) }}
-                                className="text-extrabold text-neutral-700"
-                              >
-                                {measure}
-                              </Text>
-                            )}
-                            {ingredient && (
-                              <Text
-                                style={{ fontSize: hp(1.7) }}
-                                className="text-medium text-neutral-600"
-                              >
-                                {ingredient}
-                              </Text>
-                            )}
-                          </View>
-                        </View>
-                      </View>
-                    )
-                  );
-                })}
-              </View>
-            )}
+                if (!ingredient || ingredient.trim() === "") {
+                  return null;
+                }
+
+                console.log(`Ingredient: ${ingredient}, Measure: ${measure}`);
+
+                return (
+                  <View key={i} className="flex-row items-center gap-2 mt-4">
+                    {/* Bullet point */}
+                    <View
+                      className="rounded-full bg-amber-300"
+                      style={{ height: hp(1.5), width: hp(1.5) }}
+                    ></View>
+
+                    {/* Ingredient name and measure */}
+                    <Text
+                      style={{ fontSize: hp(1.7) }}
+                      className="font-extrabold text-neutral-700"
+                    >
+                      {ingredient}
+                    </Text>
+                    <Text
+                      style={{ fontSize: hp(1.7) }}
+                      className="mx-2 font-medium text-neutral-600"
+                    >
+                      {measure}
+                    </Text>
+                  </View>
+                );
+              })}
+            </View>
           </Animated.View>
 
           {/* Instructions */}
