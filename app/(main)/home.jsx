@@ -1,4 +1,12 @@
-import { Image, ScrollView, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -9,11 +17,14 @@ import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import Categories from "../../components/categories";
 import axios from "axios";
 import Recipes from "../../components/recipes";
+import { useRouter } from "expo-router";
 
 const home = () => {
   const [activeCategory, setActiveCategory] = useState("Beef");
   const [categories, setCategories] = useState([]);
   const [meals, setMeals] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   const getCategories = async () => {
     try {
@@ -49,10 +60,30 @@ const home = () => {
     }
   };
 
+  const handleSearch = async () => {
+    if (searchQuery.trim()) {
+      try {
+        const response = await axios.get(
+          `https://themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`
+        );
+        if (response && response.data.meals && response.data.meals.length > 0) {
+          router.push(`/recipeDetail/${response.data.meals[0].idMeal}`);
+        } else {
+          Alert.alert("No recipe found", "Please try another recipe");
+        }
+      } catch (error) {
+        console.log("Error during search: ", error.message);
+      } finally {
+        setSearchQuery("");
+      }
+    }
+  };
+
   useEffect(() => {
     getCategories();
     getMealsByCategory(activeCategory);
   }, []);
+
   return (
     <View className="flex-1 bg-white">
       <StatusBar style="dark" />
@@ -96,16 +127,21 @@ const home = () => {
           <TextInput
             placeholder="Search any recipe"
             placeholderTextColor={"gray"}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
             style={{ fontSize: hp(1.7) }}
             className="flex-1 pl-3 mb-1 tracking-wider"
           />
-          <View className="p-3 bg-white rounded-full">
+          <TouchableOpacity
+            onPress={handleSearch}
+            className="p-3 bg-white rounded-full"
+          >
             <MagnifyingGlassIcon
               size={hp(2.7)}
               strokeWidth={3}
               color={"gray"}
             />
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* categories */}
