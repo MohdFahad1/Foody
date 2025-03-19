@@ -57,9 +57,6 @@ const RecipeDetail = () => {
 
     return indexes;
   };
-
-  console.log("INGREDIENT INDEXES: ", ingredientsIndexes(mealData));
-
   const getYoutubeVideoId = (url) => {
     const regex = /[?&]v=([^&]+)/;
     const match = url.match(regex);
@@ -279,9 +276,6 @@ const RecipeDetail = () => {
                 if (!ingredient || ingredient.trim() === "") {
                   return null;
                 }
-
-                console.log(`Ingredient: ${ingredient}, Measure: ${measure}`);
-
                 return (
                   <View key={i} className="flex-row items-center gap-2 mt-4">
                     {/* Bullet point */}
