@@ -99,7 +99,11 @@ const home = () => {
     }
   };
 
-  const handleChangeArea = (area) => {};
+  const handleChangeArea = (area) => {
+    setSelectedArea(area);
+  };
+
+  console.log("SELECTED AREA: ", selectedArea);
 
   useEffect(() => {
     getCategories();

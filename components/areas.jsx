@@ -1,31 +1,47 @@
-import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
-import Animated, { FadeInDown, FadeInRight } from "react-native-reanimated";
+import Animated, { FadeInRight } from "react-native-reanimated";
 
 const Areas = ({ areas, handleChangeArea, activeArea }) => {
   return (
-    <View className="mx-4" style={{ marginTop: 10 }}>
+    <View style={{ marginHorizontal: 16, marginTop: 10 }}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {areas.map((area, index) => {
-          let isActive = area.strArea === activeArea;
+          const isActive = area.strArea === activeArea;
 
           const activeButtonStyle = isActive
-            ? { backgroundColor: "#fbbf24" }
-            : { backgroundColor: "rgba(0, 0, 0, 0.1)" };
+            ? {
+                backgroundColor: "rgba(0, 0, 0, 0.15)",
+                borderRadius: 20,
+                paddingVertical: 8,
+                paddingHorizontal: 10,
+              }
+            : {
+                backgroundColor: "transparent",
+                borderRadius: 20,
+                paddingVertical: 8,
+                paddingHorizontal: 10,
+                borderColor: "rgba(0, 0, 0, 0.05)",
+                borderWidth: 1,
+              };
 
           return (
             <Animated.View
               key={index}
-              entering={FadeInRight.duration(500).delay(index * 100)} // Apply staggered delay
+              entering={FadeInRight.duration(500).delay(index * 100)}
               style={{ marginRight: 16 }}
             >
               <TouchableOpacity
-                onPress={() => handleChangeArea(area.strArea)}
-                className="flex items-center space-y-1"
+                onPress={() => handleChangeArea(isActive ? null : area.strArea)}
+                style={activeButtonStyle}
               >
-                <View className="rounded-full p-[6px] bg-black/5">
-                  <Text className="text-neutral-600">{area.strArea}</Text>
-                </View>
+                <Text
+                  style={{
+                    color: isActive ? "#333" : "rgba(0, 0, 0, 0.6)",
+                  }}
+                >
+                  {area.strArea}
+                </Text>
               </TouchableOpacity>
             </Animated.View>
           );
