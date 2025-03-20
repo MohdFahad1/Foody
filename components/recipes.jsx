@@ -23,7 +23,7 @@ const Recipes = ({ meals, categories }) => {
       </Text>
       <View>
         {categories.length == 0 || meals.length == 0 ? (
-          <Loading size="large" />
+          <Loading size="large" color="#fbbf24" />
         ) : (
           <MasonryList
             data={meals}

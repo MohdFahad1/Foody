@@ -123,7 +123,7 @@ const RecipeDetail = () => {
 
       {/* meal description */}
       {loading ? (
-        <Loading size="large" className="mt-16" />
+        <Loading size="large" className="mt-16" color="#fbbf24" />
       ) : (
         <View className="flex justify-between px-4 pt-8">
           {/* name & area */}

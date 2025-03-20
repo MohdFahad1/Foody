@@ -50,6 +50,7 @@ const home = () => {
     getMealsByCategory(category);
     setActiveCategory(category);
     setMeals([]);
+    // filterMeals(category, selectedArea);
   };
 
   const getMealsByCategory = async (category = "Beef") => {
@@ -101,9 +102,17 @@ const home = () => {
 
   const handleChangeArea = (area) => {
     setSelectedArea(area);
+    // filterMeals(activeCategory, area);
   };
 
-  console.log("SELECTED AREA: ", selectedArea);
+  // const filterMeals = async (category, area) => {
+  //   getMealsByCategory(category);
+
+  //   if (area) {
+  //     const filteredMeals = meals.filter((meal) => meal.strArea === area);
+  //     setMeals(filteredMeals);
+  //   }
+  // };
 
   useEffect(() => {
     getCategories();
@@ -171,32 +180,6 @@ const home = () => {
               />
             </TouchableOpacity>
           </View>
-
-          {/* drop down */}
-          {/* <View
-            className="flex items-center justify-center -ml-3 rounded-full bg-black/5"
-            style={{ width: hp(5.5), height: hp(5.5) }}
-          >
-            <RNPickerSelect
-              onValueChange={(value) => {
-                setSelectedArea(value);
-              }}
-              items={areas.map((area) => ({
-                label: area.strArea,
-                value: area.strArea,
-              }))}
-              placeholder={{ label: "Select Area", value: null }}
-              style={{
-                inputAndroid: { color: "gray", fontSize: hp(1.7), padding: 10 },
-                inputIOS: { color: "gray", fontSize: hp(1.7), padding: 10 },
-              }}
-            />
-            <CustomDropdown
-              items={areas.map((area) => area.strArea)}
-              onSelect={(area) => setSelectedArea(area)}
-              placeholder="Select Area"
-            />
-          </View> */}
         </View>
 
         {/* areas */}
