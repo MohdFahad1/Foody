@@ -1,50 +1,39 @@
-# Welcome to your Expo app 👋
+# 🍽️ Foody - Food Recipe App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A beautifully animated and responsive cross-platform mobile application built with **React Native (Expo)** that allows users to discover, search, and explore a wide variety of meals using the [TheMealDB API](https://www.themealdb.com/api.php).
 
-## Get started
+## 📸 Demo Video
+---
 
-1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+https://github.com/user-attachments/assets/711a22ad-bf57-448b-96f8-fbd06ac790f4
 
-2. Start the app
 
-   ```bash
-    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🔥 Features
 
-## Get a fresh project
+- **Search and Filter Recipes**  
+  Search meals by name or filter them by category for easier discovery.
 
-When you're ready, run:
+- **Masonry Layout for Recipe Browsing**  
+  Pinterest-style recipe grid using a masonry layout for an elegant visual experience.
 
-```bash
-npm run reset-project
-```
+- **Recipe Details with Media**  
+  View detailed information about each recipe, including:
+  - Meal image
+  - Ingredients
+  - Cooking steps
+  - YouTube tutorial video
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **Smooth Animations**  
+  Integrated **React Native Reanimated** to deliver smooth and delightful UI animations.
 
-## Learn more
+## 🛠️ Tech Stack
 
-To learn more about developing your project with Expo, look at the following resources:
+- **Frontend**: React Native (Expo)
+- **Animations**: React Native Reanimated
+- **Styling**: NativeWind 
+- **API**: [TheMealDB API](https://www.themealdb.com/api.php)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
